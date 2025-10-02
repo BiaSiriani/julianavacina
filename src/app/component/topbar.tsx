@@ -1,5 +1,6 @@
 'use client'; // Adicione esta linha no topo do seu arquivo
 
+
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
