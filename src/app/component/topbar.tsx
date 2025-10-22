@@ -16,7 +16,6 @@ import Avatar from '@mui/material/Avatar';
 import MenuIcon from '@mui/icons-material/Menu';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 
-
 const pages = [
   { name: 'Campanhas', path: '/campanhas' },
   { name: 'Locais', path: '/locais' },
@@ -57,14 +56,9 @@ function Topbar() {
     handleCloseUserMenu();
   };
 
-  const handleLogoClick = () => {
-    router.push('/');
-  };
-
   return (
     <AppBar 
       position="sticky"
-      top={0} 
       sx={{ 
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
