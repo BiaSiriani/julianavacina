@@ -95,7 +95,7 @@ export default function UsuarioPage() {
 
               {/* Form Fields */}
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+                <Grid >
                   <TextField
                     fullWidth
                     label="Nome Completo"
@@ -107,7 +107,7 @@ export default function UsuarioPage() {
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                <Grid >
                   <TextField
                     fullWidth
                     label="Data de Nascimento"
@@ -121,7 +121,7 @@ export default function UsuarioPage() {
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                <Grid>
                   <TextField
                     fullWidth
                     label="Email"
@@ -134,7 +134,7 @@ export default function UsuarioPage() {
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                <Grid >
                   <TextField
                     fullWidth
                     label="Telefone"
