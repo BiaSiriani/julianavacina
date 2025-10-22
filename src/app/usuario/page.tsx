@@ -223,7 +223,6 @@ export default function UsuarioPage() {
             </CardContent>
           </Card>
 
-          {/* Statistics */}
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4}>
               <Paper sx={{ p: 3, textAlign: 'center', borderRadius: 3 }}>
