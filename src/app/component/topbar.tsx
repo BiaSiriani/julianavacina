@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,10 +16,22 @@ import Avatar from '@mui/material/Avatar';
 import MenuIcon from '@mui/icons-material/Menu';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 
-const pages = ['Campanhas', 'Locais', 'Blog'];
-const settings = ['Usuário', 'Meus locais de vacina', 'Minha Carteirinha', 'Logout'];
+
+const pages = [
+  { name: 'Campanhas', path: '/campanhas' },
+  { name: 'Locais', path: '/locais' },
+  { name: 'Blog', path: '/blog' }
+];
+
+const settings = [
+  { name: 'Usuário', path: '/usuario' },
+  { name: 'Meus locais de vacina', path: '/meus-locais' },
+  { name: 'Minha Carteirinha', path: '/carteirinha' },
+  { name: 'Logout', path: '/logout' }
+];
 
 function Topbar() {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -38,9 +51,20 @@ function Topbar() {
     setAnchorElUser(null);
   };
 
+  const handleNavigate = (path: string) => {
+    router.push(path);
+    handleCloseNavMenu();
+    handleCloseUserMenu();
+  };
+
+  const handleLogoClick = () => {
+    router.push('/');
+  };
+
   return (
     <AppBar 
-      position="static" 
+      position="sticky"
+      top={0} 
       sx={{ 
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
@@ -54,7 +78,7 @@ function Topbar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            onClick={() => router.push('/')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -63,13 +87,14 @@ function Topbar() {
               letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
               transition: 'transform 0.2s',
               '&:hover': {
                 transform: 'scale(1.05)',
               }
             }}
           >
-            Juliana Vacina
+            Imuniza Brasil
           </Typography>
 
           {/* Menu Mobile */}
@@ -113,15 +138,15 @@ function Topbar() {
             >
               {pages.map((page) => (
                 <MenuItem 
-                  key={page} 
-                  onClick={handleCloseNavMenu}
+                  key={page.name} 
+                  onClick={() => handleNavigate(page.path)}
                   sx={{
                     '&:hover': {
                       backgroundColor: 'rgba(102, 126, 234, 0.1)',
                     }
                   }}
                 >
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                  <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -133,7 +158,7 @@ function Topbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => router.push('/')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -143,17 +168,18 @@ function Topbar() {
               letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
           >
-            Juliana Vacina
+            Imuniza Brasil
           </Typography>
 
           {/* Menu Desktop */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: 1 }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => handleNavigate(page.path)}
                 sx={{ 
                   my: 2, 
                   color: 'white', 
@@ -167,7 +193,7 @@ function Topbar() {
                   }
                 }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -219,15 +245,15 @@ function Topbar() {
             >
               {settings.map((setting) => (
                 <MenuItem 
-                  key={setting} 
-                  onClick={handleCloseUserMenu}
+                  key={setting.name} 
+                  onClick={() => handleNavigate(setting.path)}
                   sx={{
                     '&:hover': {
                       backgroundColor: 'rgba(102, 126, 234, 0.1)',
                     }
                   }}
                 >
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                  <Typography sx={{ textAlign: 'center' }}>{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
